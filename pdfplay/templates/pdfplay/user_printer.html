@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doughnut</title>
+    <style>
+        @page {
+            size: a4 portrait;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+            }
+            @frame content_frame {          /* Content Frame */
+                left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        }
+        #heading{
+            font-size:7;
+            text-align: center;
+        }
+        #parameter-table{
+            margin-padding:20;
+
+        }
+        p.comment {
+            font-size: 5;
+        }
+        table {
+            margin-bottom:10;
+            text-align:center;
+        }
+        canvas {
+            margin-top:10;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1 id="heading">Alarm report</h1>
+    
+    <table width="100%" border="1" cellspacing="0" cellpadding="5" center="true" >
+        <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>BRMOC</td>
+        </tr>
+    </table>
+  
+    <canvas type="graph" width="350" height="165">
+        {
+                "data": {{data}},
+                "type": "pie",
+                "labels": ["Alarms", "No alarms"],
+                "title": {"_text": "Alarm summary", "x": 290, "y": 180},
+                "x": 200, "y": 50,
+                "legend": {
+                    "alignment": "right",
+                    "boxAnchor": "nw",
+                    "fontSize": 8,
+                    "strokeWidth": 0,
+                    "dy": 6,
+                    "dx": 6,
+                    "dxTextSpace": 4,
+                    "deltay": 6,
+                    "columnMaximum": 99,
+                    "variColumn": 1,
+                    "deltax": 175,
+                    "x": 340,
+                    "y": 125
+                }
+        }
+    </canvas>   
+
+<p class="comment">Alarm details: </p>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="5">
+  <tr>
+    <th>Sensor</th>
+    <th>Duration (min)</th>
+  </tr>
+  {% for row in rows %}
+  <tr>
+    <th>{{row.x}}</th>
+    <td>{{row.y}}</td>
+
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>

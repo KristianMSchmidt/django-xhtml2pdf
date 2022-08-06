@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/kristian/repos/django-pdf'
+sed -ne '/@sed/!s/## //p'  Makefile
+make: Leaving directory '/home/kristian/repos/django-pdf'
+ 

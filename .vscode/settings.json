@@ -1,0 +1,18 @@
+{
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+  },
+  "python.linting.pylintArgs": [
+    "C0114: missing-module-docstring",
+    "C0115: missing-class-docstring",
+    "C0116: missing-function-docstring"
+  ]
+}

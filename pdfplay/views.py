@@ -3,43 +3,6 @@ How to create PDF files¶
 
 https://docs.djangoproject.com/en/4.0/howto/outputting-pdf/
 """
-import io
-
-from django.http import FileResponse
-from reportlab.graphics.charts.legends import Legend
-from reportlab.graphics.charts.piecharts import Pie
-from reportlab.graphics.shapes import Drawing, String
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.validators import Auto
-from reportlab.pdfgen import canvas
-from reportlab.platypus import Paragraph, SimpleDocTemplate
-
-
-def reportlab(request):
-    # Create a file-like buffer to receive PDF data.
-    buffer = io.BytesIO()
-
-    # Create the PDF object, using the buffer as its "file."
-    p = canvas.Canvas(buffer)
-
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-    p.drawString(250, 600, "Alarm report")
-    p.circle(
-        250,
-        500,
-        10,
-    )
-    # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
-
-    d = Drawing(200, 100)
-
-    # FileResponse sets the Content-Disposition header so that browsers
-    # present the option to save the file.
-    buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename="hello.pdf")
 
 
 import os
